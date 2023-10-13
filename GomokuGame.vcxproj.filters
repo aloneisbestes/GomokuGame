@@ -21,10 +21,64 @@
       <UniqueIdentifier>{639EADAA-A684-42e4-A9AD-28FC9BCB8F7C}</UniqueIdentifier>
       <Extensions>ts</Extensions>
     </Filter>
+    <Filter Include="GGGameMap">
+      <UniqueIdentifier>{73c1476f-5914-42c5-93da-af41d9242c28}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="GGCommon.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GGGomokuGame.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GGGameSetting.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GGGlobalVariable.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GGGameMap\GGGraphicsMapScene.cpp">
+      <Filter>GGGameMap</Filter>
+    </ClCompile>
+    <ClCompile Include="GGGameMap\GGGraphicsMapView.cpp">
+      <Filter>GGGameMap</Filter>
+    </ClCompile>
+    <ClCompile Include="GGGameMap\GGChessboardItem.cpp">
+      <Filter>GGGameMap</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="GGCommon.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GGGameSetting.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GGGlobalVariable.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <QtUic Include="GGGomokuGame.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="GGGomokuGame.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="GGGameMap\GGGraphicsMapView.h">
+      <Filter>GGGameMap</Filter>
+    </QtMoc>
+    <QtMoc Include="GGGameMap\GGGraphicsMapScene.h">
+      <Filter>GGGameMap</Filter>
+    </QtMoc>
+    <QtMoc Include="GGGameMap\GGChessboardItem.h">
+      <Filter>GGGameMap</Filter>
+    </QtMoc>
   </ItemGroup>
 </Project>

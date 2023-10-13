@@ -38,13 +38,12 @@
   </ImportGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|Win32'" Label="QtSettings">
     <QtInstall>Qt5.15.2</QtInstall>
-    <QtModules>core;widgets</QtModules>
+    <QtModules>core;widgets;gui</QtModules>
     <QtBuildConfig>debug</QtBuildConfig>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|Win32'" Label="QtSettings">
     <QtInstall>Qt5.15.2</QtInstall>
-    <QtModules>
-    </QtModules>
+    <QtModules>core;gui;widgets</QtModules>
     <QtBuildConfig>release</QtBuildConfig>
   </PropertyGroup>
   <Target Name="QtMsBuildNotFound" BeforeTargets="CustomBuild;ClCompile" Condition="!Exists('$(QtMsBuild)\qt.targets') or !Exists('$(QtMsBuild)\qt.props')">
@@ -62,9 +61,15 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|Win32'">
+    <ExternalIncludePath>$(ExternalIncludePath)</ExternalIncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|Win32'">
   </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(SolutionDir)GGGameMap;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+  </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|Win32'" Label="Configuration">
     <ClCompile>
       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
@@ -90,7 +95,26 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="GGCommon.cpp" />
+    <ClCompile Include="GGGameMap\GGChessboardItem.cpp" />
+    <ClCompile Include="GGGameMap\GGGraphicsMapScene.cpp" />
+    <ClCompile Include="GGGameMap\GGGraphicsMapView.cpp" />
+    <ClCompile Include="GGGameSetting.cpp" />
+    <ClCompile Include="GGGlobalVariable.cpp" />
+    <ClCompile Include="GGGomokuGame.cpp" />
     <ClCompile Include="main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="GGCommon.h" />
+    <QtMoc Include="GGGameMap\GGGraphicsMapScene.h" />
+    <QtMoc Include="GGGameMap\GGGraphicsMapView.h" />
+    <QtMoc Include="GGGameMap\GGChessboardItem.h" />
+    <ClInclude Include="GGGameSetting.h" />
+    <ClInclude Include="GGGlobalVariable.h" />
+    <QtMoc Include="GGGomokuGame.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtUic Include="GGGomokuGame.ui" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">
