@@ -38,9 +38,6 @@
     <ClCompile Include="GGGameSetting.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="GGGlobalVariable.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="GGGameMap\GGGraphicsMapScene.cpp">
       <Filter>GGGameMap</Filter>
     </ClCompile>
@@ -48,6 +45,12 @@
       <Filter>GGGameMap</Filter>
     </ClCompile>
     <ClCompile Include="GGGameMap\GGChessboardItem.cpp">
+      <Filter>GGGameMap</Filter>
+    </ClCompile>
+    <ClCompile Include="GGGlobalVariable.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GGChessPiecesItem.cpp">
       <Filter>GGGameMap</Filter>
     </ClCompile>
   </ItemGroup>
@@ -58,8 +61,14 @@
     <ClInclude Include="GGGameSetting.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="GGGameMap\GGChessboardItem.h">
+      <Filter>GGGameMap</Filter>
+    </ClInclude>
     <ClInclude Include="GGGlobalVariable.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GGChessPiecesItem.h">
+      <Filter>GGGameMap</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -77,8 +86,10 @@
     <QtMoc Include="GGGameMap\GGGraphicsMapScene.h">
       <Filter>GGGameMap</Filter>
     </QtMoc>
-    <QtMoc Include="GGGameMap\GGChessboardItem.h">
-      <Filter>GGGameMap</Filter>
-    </QtMoc>
+  </ItemGroup>
+  <ItemGroup>
+    <QtRcc Include="GomokuGame.qrc">
+      <Filter>Resource Files</Filter>
+    </QtRcc>
   </ItemGroup>
 </Project>

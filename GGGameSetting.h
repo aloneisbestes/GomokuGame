@@ -16,6 +16,7 @@ public:
 	}
 
 public:
+	bool m_isZoom;	// 是否启用缩放功能
 
 
 private:
