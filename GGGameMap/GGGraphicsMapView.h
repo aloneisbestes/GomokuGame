@@ -13,6 +13,9 @@ public:
 	GGGraphicsMapView(QWidget *parent=nullptr);
 	~GGGraphicsMapView();
 	
+protected:
+
+	virtual void mousePressEvent(QMouseEvent* event);
 
 private:
 	GGGraphicsMapScene* m_graphicsMapScene;

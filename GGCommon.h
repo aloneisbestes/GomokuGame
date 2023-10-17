@@ -8,6 +8,13 @@ struct GGChessboardSize
 	GGChessboardSize(int row=0, int column=0): m_row(row), m_column(column){}
 };
 
+struct GGChessboardCoord
+{
+	double m_x;
+	double m_y;
+	GGChessboardCoord(double x=0,double y=0): m_x(x), m_y(y) {}
+	GGChessboardCoord(const GGChessboardCoord &other): GGChessboardCoord(other.m_x, other.m_y) {}
+};
 
 /*************************枚举 Start******************************/
 // 棋盘的类型

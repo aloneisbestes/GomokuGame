@@ -1,5 +1,6 @@
 #include "GGChessboardItem.h"
 #include <QPainter>
+#include <QtMath>
 
 const int GGChessboardItem::__redius=3;
 
@@ -14,6 +15,12 @@ GGChessboardItem::GGChessboardItem(QRectF rect, int redius, QGraphicsItem*parent
 	m_intervalHeight=0;
 	m_intervalWidth=0;
 	m_positionSize=0;
+	m_chessboard=nullptr;
+	m_chessCoordArrSize=15;
+	m_intervalWidth=m_size.width()/(m_chessboardSize.m_column-1);
+	m_intervalHeight=m_size.height()/(m_chessboardSize.m_row-1);
+	createChessboradArr();
+	initChessboradArr();
 }
 
 GGChessboardItem::GGChessboardItem(qreal x, qreal y, qreal w, qreal h, QGraphicsItem* parent)
@@ -21,7 +28,9 @@ GGChessboardItem::GGChessboardItem(qreal x, qreal y, qreal w, qreal h, QGraphics
 {}
 
 GGChessboardItem::~GGChessboardItem()
-{}
+{
+	clearChessboradArr();
+}
 
 QRectF GGChessboardItem::boundingRect() const
 {
@@ -44,8 +53,6 @@ void GGChessboardItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* 
 
 	int row=m_chessboardSize.m_row-1;
 	int coloumn=m_chessboardSize.m_column-1;
-	m_intervalWidth=m_size.width()/coloumn;
-	m_intervalHeight=m_size.height()/row;
 	int x1, y1, x2, y2;
 	for (int i=1; i < row || i < coloumn; ++i) {
 		if (i <= coloumn) {
@@ -69,11 +76,16 @@ void GGChessboardItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* 
 void GGChessboardItem::setChessboardMatrix(GGChessboardType type)
 {
 	m_chessboardType=type;
+	int size;
 	switch (m_chessboardType)
 	{
 		case ChessBoardType_1515:
 		{
-			m_chessboardSize=GGChessboardSize(15, 15);
+			size=15;
+			m_chessboardSize=GGChessboardSize(size,size);
+			m_intervalWidth=m_size.width()/(m_chessboardSize.m_column-1);
+			m_intervalHeight=m_size.height()/(m_chessboardSize.m_row-1);
+			m_chessCoordArrSize=size;
 		}
 		break;
 		default:
@@ -82,7 +94,34 @@ void GGChessboardItem::setChessboardMatrix(GGChessboardType type)
 		}
 		break;
 	}
+	createChessboradArr();
+	initChessboradArr();
 	update();
+}
+
+bool GGChessboardItem::whetherCanDrop(const QPointF &scenePoint,QPointF& retPoint)
+{
+	QPointF point=this->mapFromScene(scenePoint);
+	// 计算当前点所在行和列
+	int row=qAbs(qFloor(point.y() / m_intervalHeight));
+	int column=qAbs(qFloor(point.x()/m_intervalWidth));
+	qreal radii=m_intervalWidth/2; // 圆的半径
+
+	for (int i=0; i < 2; ++i) {
+		int tmpColumn=column;
+		for (int j=0; j < 2; ++j) {
+			QPointF center=QPointF(m_chessboard[row][tmpColumn].m_x,m_chessboard[row][tmpColumn].m_y);
+			qreal distance=QLineF(center,point).length(); // 计算点到圆心的距离
+			if (distance <= radii) {
+				retPoint=center;
+				return true;
+			}
+			tmpColumn+=1;
+		}
+		row+=1;
+	}
+
+	return false;
 }
 
 void GGChessboardItem::drawGamekuPosition(GGChessboardType type, QPainter* painter)
@@ -144,4 +183,41 @@ void GGChessboardItem::drawChessBoard1515(QPainter* painter)
 	tmpY=m_intervalHeight*3-rectifyWidth;
 	rect = QRectF(tmpX, tmpY, m_positionSize, m_positionSize);
 	painter->drawRect(rect);    // 绘制矩形
+}
+
+void GGChessboardItem::createChessboradArr()
+{
+	clearChessboradArr();
+	m_chessboard=new GGChessboardCoord*[m_chessCoordArrSize];
+	for (int i=0; i < m_chessCoordArrSize; i++) {
+		m_chessboard[i]=new GGChessboardCoord[m_chessCoordArrSize];
+	}
+}
+
+void GGChessboardItem::clearChessboradArr()
+{
+	if (m_chessboard) {
+		for (int i=0; i < m_chessCoordArrSize; i++) {
+			delete[] m_chessboard[i];
+		}
+
+		delete[] m_chessboard;
+		m_chessboard=nullptr;
+	}
+}
+
+void GGChessboardItem::initChessboradArr()
+{
+	GGChessboardCoord chessboardCoord;
+	if (m_chessboard) {
+		for (int row=0; row < m_chessCoordArrSize; ++row) {
+			for (int column=0; column < m_chessCoordArrSize; ++column) {
+				m_chessboard[row][column]=chessboardCoord;
+				chessboardCoord.m_x+=m_intervalWidth;
+			}
+			chessboardCoord.m_y+=m_intervalHeight;
+			chessboardCoord.m_x=0;
+		}
+		
+	}
 }
