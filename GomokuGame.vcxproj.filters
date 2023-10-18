@@ -24,6 +24,9 @@
     <Filter Include="GGGameMap">
       <UniqueIdentifier>{73c1476f-5914-42c5-93da-af41d9242c28}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GGGameMode">
+      <UniqueIdentifier>{6c18162c-f2fa-40cf-ac25-0522823a0645}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -53,6 +56,12 @@
     <ClCompile Include="GGChessPiecesItem.cpp">
       <Filter>GGGameMap</Filter>
     </ClCompile>
+    <ClCompile Include="GGGameMode\GGSingleGame.cpp">
+      <Filter>GGGameMode</Filter>
+    </ClCompile>
+    <ClCompile Include="GGGameRole.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GGCommon.h">
@@ -70,9 +79,15 @@
     <ClInclude Include="GGChessPiecesItem.h">
       <Filter>GGGameMap</Filter>
     </ClInclude>
+    <ClInclude Include="GGGameRole.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="GGGomokuGame.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="GGGameRole.ui">
       <Filter>Form Files</Filter>
     </QtUic>
   </ItemGroup>
@@ -85,6 +100,9 @@
     </QtMoc>
     <QtMoc Include="GGGameMap\GGGraphicsMapScene.h">
       <Filter>GGGameMap</Filter>
+    </QtMoc>
+    <QtMoc Include="GGGameMode\GGSingleGame.h">
+      <Filter>GGGameMode</Filter>
     </QtMoc>
   </ItemGroup>
   <ItemGroup>

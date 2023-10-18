@@ -67,7 +67,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <AdditionalIncludeDirectories>$(SolutionDir);$(SolutionDir)GGGameMap;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)GGGameMode;$(SolutionDir);$(SolutionDir)GGGameMap;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|Win32'" Label="Configuration">
@@ -100,6 +100,8 @@
     <ClCompile Include="GGGameMap\GGChessboardItem.cpp" />
     <ClCompile Include="GGGameMap\GGGraphicsMapScene.cpp" />
     <ClCompile Include="GGGameMap\GGGraphicsMapView.cpp" />
+    <ClCompile Include="GGGameMode\GGSingleGame.cpp" />
+    <ClCompile Include="GGGameRole.cpp" />
     <ClCompile Include="GGGameSetting.cpp" />
     <ClCompile Include="GGGlobalVariable.cpp" />
     <ClCompile Include="GGGomokuGame.cpp" />
@@ -108,6 +110,8 @@
   <ItemGroup>
     <ClInclude Include="GGChessPiecesItem.h" />
     <ClInclude Include="GGCommon.h" />
+    <QtMoc Include="GGGameMode\GGSingleGame.h" />
+    <QtMoc Include="GGGameRole.h" />
     <ClInclude Include="GGGlobalVariable.h" />
     <QtMoc Include="GGGameMap\GGGraphicsMapScene.h" />
     <QtMoc Include="GGGameMap\GGGraphicsMapView.h" />
@@ -116,6 +120,7 @@
     <QtMoc Include="GGGomokuGame.h" />
   </ItemGroup>
   <ItemGroup>
+    <QtUic Include="GGGameRole.ui" />
     <QtUic Include="GGGomokuGame.ui" />
   </ItemGroup>
   <ItemGroup>

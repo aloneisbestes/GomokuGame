@@ -9,10 +9,13 @@ QT_END_NAMESPACE
 
 
 class GGGraphicsMapView;
+class GGSingleGame;
 
 class GGGomokuGame : public QWidget
 {
 	Q_OBJECT
+private:
+	friend class GGSingleGame;
 
 public:
 	GGGomokuGame(QWidget *parent = nullptr);
@@ -20,6 +23,5 @@ public:
 
 private:
 	Ui::GGGomokuGameClass *ui;
-
 	GGGraphicsMapView* m_graphicsMapView;
 };
